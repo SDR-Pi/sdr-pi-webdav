@@ -1,0 +1,1062 @@
+options:
+  parameters:
+    author: ''
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: Both the Transmit and Receive pathways for a WBFM (Broadcast) FM
+      Transeiver.
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: Virtual_FM_Transmitter
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Virtual FM Transceiver
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: audio_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@1:(1,0,1,1)
+    label: Audio Gain
+    min_len: '200'
+    orient: Qt.Vertical
+    rangeType: float
+    start: '0'
+    step: '0.1'
+    stop: '10'
+    value: '0.9'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1016, 8.0]
+    rotation: 0
+    state: true
+- name: audio_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: int(48e3)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [272, 12.0]
+    rotation: 0
+    state: enabled
+- name: frequency_rx
+  id: variable
+  parameters:
+    comment: ''
+    value: (frequency_rx_input)*1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [16, 876.0]
+    rotation: 0
+    state: true
+- name: frequency_rx_input
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@3:(0,0,1,1)
+    label: Receive Frequency
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '80'
+    step: '0.1'
+    stop: '150'
+    value: '104.700'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 1128.0]
+    rotation: 0
+    state: true
+- name: frequency_tx
+  id: variable
+  parameters:
+    comment: ''
+    value: (frequency_rx_input)*1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [768, 12.0]
+    rotation: 0
+    state: true
+- name: frequency_tx_input
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@1:(0,0,1,1)
+    label: Transmit Frequency
+    min_len: '200'
+    orient: Qt.Vertical
+    rangeType: float
+    start: '80'
+    step: '0.1'
+    stop: '150'
+    value: '104.700'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 8.0]
+    rotation: 0
+    state: true
+- name: lpf_decimation
+  id: variable
+  parameters:
+    comment: ''
+    value: '8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 876.0]
+    rotation: 0
+    state: true
+- name: lpf_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: simple_fm_receiver@1
+    label: LPF_Gain
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: int
+    start: '1'
+    step: '1'
+    stop: '100'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 1128.0]
+    rotation: 0
+    state: true
+- name: reduce_channelised_power
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@2:(2,0,1,1)
+    label: Adjust Channelised Power
+    min_len: '200'
+    orient: Qt.Vertical
+    rangeType: float
+    start: '0'
+    step: '0.01'
+    stop: '1'
+    value: '0.5'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1472, 16.0]
+    rotation: 0
+    state: true
+- name: rf_gain
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: simple_fm_receiver@0
+    label: 'RF Gain:'
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: int
+    start: '-10'
+    step: '1'
+    stop: '70'
+    value: '10'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 1128.0]
+    rotation: 0
+    state: true
+- name: rf_noise
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@2:(0,0,1,1)
+    label: Transmit Noise
+    min_len: '200'
+    orient: Qt.Vertical
+    rangeType: float
+    start: '0'
+    step: '0.01'
+    stop: '1'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1344, 16.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 2e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: source_select
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@0
+    label: 'Source:'
+    label0: 'Microphone:'
+    label1: 'Tone:'
+    label2: 'Pre-recorded Wav:'
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '3'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '1'
+    widget: radio_buttons
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 4.0]
+    rotation: 0
+    state: true
+- name: tone_frequency
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@0
+    label: Frequency For Constant Tone (Hz)
+    min_len: '200'
+    orient: Qt.Vertical
+    rangeType: int
+    start: '0'
+    step: '10'
+    stop: '3000'
+    value: '500'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 8.0]
+    rotation: 0
+    state: true
+- name: volume
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: virtual_fm_transceiver@3:(1,0,1,1)
+    label: 'Volume:'
+    min_len: '200'
+    orient: Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '100'
+    value: '2'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [168, 1128.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: tone_frequency
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: int(audio_rate)
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 280.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '0'
+    comment: ''
+    freq: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: int(audio_rate)
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [744, 456.0]
+    rotation: 0
+    state: true
+- name: analog_wfm_rcv_0
+  id: analog_wfm_rcv
+  parameters:
+    affinity: ''
+    alias: ''
+    audio_decimation: '1'
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quad_rate: samp_rate/lpf_decimation
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 980.0]
+    rotation: 0
+    state: true
+- name: analog_wfm_tx_0
+  id: analog_wfm_tx
+  parameters:
+    affinity: ''
+    alias: ''
+    audio_rate: int(audio_rate)
+    comment: ''
+    fh: '-1.0'
+    max_dev: 5e3
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    quad_rate: int(audio_rate)
+    tau: 75e-6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 376.0]
+    rotation: 0
+    state: true
+- name: audio_sink_0
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: '48000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1392, 1148.0]
+    rotation: 0
+    state: enabled
+- name: audio_sink_0_0_0
+  id: audio_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    num_inputs: '1'
+    ok_to_block: 'True'
+    samp_rate: '48000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1136, 324.0]
+    rotation: 0
+    state: disabled
+- name: audio_source_0
+  id: audio_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_outputs: '1'
+    ok_to_block: 'True'
+    samp_rate: int(audio_rate)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 228.0]
+    rotation: 0
+    state: enabled
+- name: audio_source_0_0
+  id: audio_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    device_name: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_outputs: '1'
+    ok_to_block: 'True'
+    samp_rate: int(audio_rate)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 484.0]
+    rotation: 0
+    state: enabled
+- name: band_pass_filter_0
+  id: band_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    decim: '1'
+    gain: '1'
+    high_cutoff_freq: 5e3
+    interp: '1'
+    low_cutoff_freq: '300'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: audio_rate
+    type: fir_filter_fff
+    width: '200'
+    win: firdes.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 268.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_0
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [968, 320.0]
+    rotation: 0
+    state: true
+- name: blocks_add_xx_1
+  id: blocks_add_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 456.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: volume
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1200, 1148.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_1
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: audio_gain
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 316.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_const_vxx_1_0
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: reduce_channelised_power
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 692.0]
+    rotation: 0
+    state: enabled
+- name: blocks_multiply_const_vxx_2
+  id: blocks_multiply_const_vxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    const: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 484.0]
+    rotation: 0
+    state: true
+- name: blocks_null_sink_0
+  id: blocks_null_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bus_structure_sink: '[[0,],]'
+    comment: ''
+    num_inputs: '1'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1392, 1208.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: source_select
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '3'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [448, 288.0]
+    rotation: 0
+    state: true
+- name: blocks_wavfile_source_0
+  id: blocks_wavfile_source
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    file: /Users/sechen/Documents/GNURadio-Experiments/Samples/FM_Broadcast.wav
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nchan: '1'
+    repeat: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [32, 420.0]
+    rotation: 0
+    state: true
+- name: channels_channel_model_0
+  id: channels_channel_model
+  parameters:
+    affinity: ''
+    alias: ''
+    block_tags: 'False'
+    comment: ''
+    epsilon: '1.0'
+    freq_offset: '0.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_voltage: rf_noise
+    seed: '0'
+    taps: 1.0 + 1.0j
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 656.0]
+    rotation: 0
+    state: true
+- name: low_pass_filter_0
+  id: low_pass_filter
+  parameters:
+    affinity: ''
+    alias: ''
+    beta: '6.76'
+    comment: ''
+    cutoff_freq: 100e3
+    decim: lpf_decimation
+    gain: lpf_gain
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fir_filter_ccf
+    width: 10e3
+    win: firdes.WIN_HAMMING
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 944.0]
+    rotation: 0
+    state: true
+- name: qtgui_sink_x_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate/lpf_decimation
+    comment: ''
+    fc: frequency_rx
+    fftsize: '1024'
+    gui_hint: simple_fm_receiver@2
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Demodulated Output
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: float
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 960.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate/lpf_decimation
+    comment: ''
+    fc: frequency_rx
+    fftsize: '1024'
+    gui_hint: simple_fm_receiver@1
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Raw Output
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: complex
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [632, 864.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_0_0_0
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: frequency_rx
+    fftsize: '1024'
+    gui_hint: simple_fm_receiver@0
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Source RF
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: complex
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 832.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_sink_x_1
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: int(audio_rate)
+    comment: ''
+    fc: frequency_tx
+    fftsize: '1024'
+    gui_hint: virtual_fm_transceiver@1:(2,0,1,1)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: Transmitter Audio Analysis
+    plotconst: 'True'
+    plotfreq: 'False'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'True'
+    type: float
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1096, 216.0]
+    rotation: 0
+    state: true
+- name: qtgui_sink_x_2
+  id: qtgui_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    bw: samp_rate
+    comment: ''
+    fc: frequency_tx
+    fftsize: '1024'
+    gui_hint: virtual_fm_transceiver@2:(1,0,1,1)
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: RF Spectrum
+    plotconst: 'True'
+    plotfreq: 'True'
+    plottime: 'True'
+    plotwaterfall: 'True'
+    rate: '10'
+    showports: 'False'
+    showrf: 'False'
+    type: complex
+    wintype: firdes.WIN_BLACKMAN_hARRIS
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 584.0]
+    rotation: 0
+    state: true
+- name: rational_resampler_xxx_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: int((samp_rate/lpf_decimation)/1e3)
+    fbw: '0.4'
+    interp: '24'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: fff
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 1128.0]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_1
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '1'
+    fbw: ''
+    interp: '100'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 672.0]
+    rotation: 0
+    state: enabled
+- name: rational_resampler_xxx_1_0
+  id: rational_resampler_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '1'
+    fbw: ''
+    interp: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    taps: ''
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 672.0]
+    rotation: 0
+    state: enabled
+- name: simple_fm_receiver
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: virtual_fm_transceiver@3:(2,0,1,1)
+    label0: Source
+    label1: Low Pass Filter
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: Demodulated
+    label3: ''
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [560, 1128.0]
+    rotation: 0
+    state: true
+- name: virtual_fm_transceiver
+  id: qtgui_tab_widget
+  parameters:
+    alias: ''
+    comment: ''
+    gui_hint: ''
+    label0: Audio Source
+    label1: Transmitter
+    label10: Tab 10
+    label11: Tab 11
+    label12: Tab 12
+    label13: Tab 13
+    label14: Tab 14
+    label15: Tab 15
+    label16: Tab 16
+    label17: Tab 17
+    label18: Tab 18
+    label19: Tab 19
+    label2: RF Spectrum
+    label3: Receiver
+    label4: Tab 4
+    label5: Tab 5
+    label6: Tab 6
+    label7: Tab 7
+    label8: Tab 8
+    label9: Tab 9
+    num_tabs: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 1128.0]
+    rotation: 0
+    state: true
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: Receive-Virtual-Sink
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 692.0]
+    rotation: 0
+    state: true
+- name: virtual_sink_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: Transmit-Virtual-Sink
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1368, 404.0]
+    rotation: 0
+    state: true
+- name: virtual_source_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: Receive-Virtual-Sink
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 988.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: Transmit-Virtual-Sink
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [72, 692.0]
+    rotation: 0
+    state: true
+
+connections:
+- [analog_sig_source_x_0, '0', blocks_selector_0, '1']
+- [analog_sig_source_x_0_0, '0', blocks_add_xx_0, '1']
+- [analog_wfm_rcv_0, '0', qtgui_sink_x_0, '0']
+- [analog_wfm_rcv_0, '0', rational_resampler_xxx_0, '0']
+- [analog_wfm_tx_0, '0', virtual_sink_1, '0']
+- [audio_source_0, '0', blocks_selector_0, '0']
+- [audio_source_0_0, '0', blocks_multiply_const_vxx_2, '0']
+- [band_pass_filter_0, '0', blocks_multiply_const_vxx_1, '0']
+- [blocks_add_xx_0, '0', analog_wfm_tx_0, '0']
+- [blocks_add_xx_0, '0', audio_sink_0_0_0, '0']
+- [blocks_add_xx_0, '0', qtgui_sink_x_1, '0']
+- [blocks_add_xx_1, '0', blocks_selector_0, '2']
+- [blocks_multiply_const_vxx_0, '0', audio_sink_0, '0']
+- [blocks_multiply_const_vxx_0, '0', blocks_null_sink_0, '0']
+- [blocks_multiply_const_vxx_1, '0', blocks_add_xx_0, '0']
+- [blocks_multiply_const_vxx_1_0, '0', channels_channel_model_0, '0']
+- [blocks_multiply_const_vxx_2, '0', blocks_add_xx_1, '1']
+- [blocks_selector_0, '0', band_pass_filter_0, '0']
+- [blocks_wavfile_source_0, '0', blocks_add_xx_1, '0']
+- [channels_channel_model_0, '0', rational_resampler_xxx_1_0, '0']
+- [low_pass_filter_0, '0', analog_wfm_rcv_0, '0']
+- [low_pass_filter_0, '0', qtgui_sink_x_0_0, '0']
+- [rational_resampler_xxx_0, '0', blocks_multiply_const_vxx_0, '0']
+- [rational_resampler_xxx_1, '0', blocks_multiply_const_vxx_1_0, '0']
+- [rational_resampler_xxx_1_0, '0', qtgui_sink_x_2, '0']
+- [rational_resampler_xxx_1_0, '0', virtual_sink_0, '0']
+- [virtual_source_0, '0', low_pass_filter_0, '0']
+- [virtual_source_0, '0', qtgui_sink_x_0_0_0, '0']
+- [virtual_source_1, '0', rational_resampler_xxx_1, '0']
+
+metadata:
+  file_format: 1

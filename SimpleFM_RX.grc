@@ -32,11 +32,23 @@ options:
     state: enabled
 
 blocks:
+- name: audio_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: int(48e3)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [400, 12.0]
+    rotation: 0
+    state: enabled
 - name: frequency_rx
   id: variable
   parameters:
     comment: ''
-    value: (frequency_rx_input)*1e6
+    value: (frequency_rx_input)*1000000
   states:
     bus_sink: false
     bus_source: false
@@ -74,7 +86,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 12.0]
+    coordinate: [584, 4.0]
     rotation: 0
     state: true
 - name: lpf_gain
@@ -89,7 +101,7 @@ blocks:
     start: '1'
     step: '1'
     stop: '100'
-    value: '1'
+    value: '28'
     widget: counter_slider
   states:
     bus_sink: false
@@ -110,7 +122,7 @@ blocks:
     start: '10'
     step: '1'
     stop: '70'
-    value: '20'
+    value: '50'
     widget: counter_slider
   states:
     bus_sink: false
@@ -123,7 +135,7 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: 2e6
+    value: '2000000'
   states:
     bus_sink: false
     bus_source: false
@@ -143,7 +155,7 @@ blocks:
     start: '0'
     step: '1'
     stop: '100'
-    value: '0'
+    value: '2'
     widget: counter_slider
   states:
     bus_sink: false
@@ -166,7 +178,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 348.0]
+    coordinate: [640, 348.0]
     rotation: 0
     state: true
 - name: audio_sink_0
@@ -178,12 +190,12 @@ blocks:
     device_name: ''
     num_inputs: '1'
     ok_to_block: 'True'
-    samp_rate: '24000'
+    samp_rate: audio_rate
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 508.0]
+    coordinate: [1224, 508.0]
     rotation: 0
     state: enabled
 - name: blocks_multiply_const_vxx_0
@@ -201,7 +213,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1160, 508.0]
+    coordinate: [1032, 508.0]
     rotation: 0
     state: true
 - name: blocks_null_sink_0
@@ -218,7 +230,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 640.0]
+    coordinate: [1224, 640.0]
     rotation: 0
     state: disabled
 - name: blocks_wavfile_sink_0
@@ -230,12 +242,12 @@ blocks:
     comment: ''
     file: /Users/sechen/Documents/GNURadio-Experiments/Samples/FM_Broadcast.wav
     nchan: '1'
-    samp_rate: int(48e3)
+    samp_rate: audio_rate
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 696.0]
+    coordinate: [1224, 688.0]
     rotation: 0
     state: true
 - name: low_pass_filter_0
@@ -616,7 +628,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 168.0]
+    coordinate: [88, 160.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -696,7 +708,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 560.0]
+    coordinate: [1224, 560.0]
     rotation: 0
     state: disabled
 - name: qtgui_sink_x_0
@@ -725,7 +737,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [952, 328.0]
+    coordinate: [848, 328.0]
     rotation: 0
     state: enabled
 - name: qtgui_sink_x_0_0
@@ -754,7 +766,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 232.0]
+    coordinate: [640, 232.0]
     rotation: 0
     state: enabled
 - name: qtgui_sink_x_0_0_0
@@ -794,7 +806,7 @@ blocks:
     comment: ''
     decim: int((samp_rate/lpf_decimation)/1e3)
     fbw: '0.4'
-    interp: '24'
+    interp: int(audio_rate/1e3)
     maxoutbuf: '0'
     minoutbuf: '0'
     taps: ''
@@ -803,7 +815,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [960, 488.0]
+    coordinate: [856, 488.0]
     rotation: 0
     state: enabled
 - name: simple_fm_receiver
