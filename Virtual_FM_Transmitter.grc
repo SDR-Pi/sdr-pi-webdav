@@ -51,7 +51,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1016, 8.0]
+    coordinate: [1128, 8.0]
     rotation: 0
     state: true
 - name: audio_rate
@@ -108,7 +108,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 12.0]
+    coordinate: [880, 12.0]
     rotation: 0
     state: true
 - name: frequency_tx_input
@@ -129,7 +129,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [864, 8.0]
+    coordinate: [976, 8.0]
     rotation: 0
     state: true
 - name: lpf_decimation
@@ -874,7 +874,7 @@ blocks:
     comment: ''
     decim: '1'
     fbw: ''
-    interp: '100'
+    interp: '90'
     maxoutbuf: '0'
     minoutbuf: '0'
     taps: ''
